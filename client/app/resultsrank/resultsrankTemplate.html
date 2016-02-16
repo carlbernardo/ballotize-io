@@ -28,7 +28,7 @@
   <div class="container">
     <form class="form-horizontal">
       <p class="thanks-text" ng-show="resultsrank.hasVoted">Thank you for voting {{ resultsrank.username }}!</p>
-      <p class="sub-directions" ng-show="!resultsrank.done">Please view the resultsrank in real-time, below.</p>
+      <p class="sub-directions" ng-show="!resultsrank.done">Please view the ranked results in real-time, below.</p>
       <button
       class="btn btn-md btn-danger btn-block main-button"
       ng-show="resultsrank.isOwner() && !resultsrank.done"
@@ -42,13 +42,13 @@
 
   <div class="row">
     <h1 class="main-header" ng-show="resultsrank.done">This vote has ended!</h1>
-    <p class="sub-directions" ng-show="resultsrank.done">Below are the resultsrank:</p>
+    <p class="sub-directions" ng-show="resultsrank.done">Below are the ranked results (less votes = more highly ranked):</p>
     <h1 class="main-header">{{ resultsrank.topic }}</h1>
     <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="votes in resultsrank.tally track by $index">
-          {{ resultsrank.options[$index] }}
-          <span class="badge">{{ votes }}</span>
+        <li class="list-group-item" ng-repeat="item in resultsrank.sorting">
+          {{ item[0] }}
+          <span class="badge">{{ item[1] }}</span>
         </li>
       </ul>
     </div>
