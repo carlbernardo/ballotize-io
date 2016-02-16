@@ -13,7 +13,6 @@ resultsrank.controller('resultsrankController', ['$scope', 'Ballot', 'User', 'so
   ctrl.roomcode = ballot.roomcode;
   ctrl.done = ballot.done;
   ctrl.hasVoted = User.hasVoted();
-  ctrl.sorting = rankResults();
 
   function rankResults() {
     var resultsObj = {}; //{asd: '1'}
@@ -46,6 +45,7 @@ resultsrank.controller('resultsrankController', ['$scope', 'Ballot', 'User', 'so
     ctrl.options = data.options;
     ctrl.tally = data.results;
     ctrl.voters = data.voters;
+    ctrl.sorting = rankResults();
 
   });
 
