@@ -27,6 +27,22 @@ results.controller('resultsController', ['$scope', 'Ballot', 'User', 'socket', f
     ctrl.options = data.options;
     ctrl.tally = data.results;
     ctrl.voters = data.voters;
+    var labels = [];
+    for (var k in ctrl.options) {
+      labels.push(ctrl.options[k])
+    }
+    var data = {
+      labels: labels,
+      series: ctrl.tally
+    };
+
+    var sum = function(a, b) { return a + b };
+
+    new Chartist.Pie('.ct-chart', data, {
+      labelInterpolationFnc: function(value) {
+        return Math.round(data.series[data.labels.indexOf(value)] / data.series.reduce(sum) * 100) + '%';
+      }
+    });
   });
 
   socket.on('endVote', function(data){
