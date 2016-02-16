@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='Ballotize'>
+<html>
   <head>
     <meta charset="utf-8">
     <title>ballotize.io</title>
@@ -15,11 +15,38 @@
 
   </head>
   <body>
-    <div ui-view></div>
+
+    <div ng-app='Ballotize'>
+      <div ui-view></div>
+    </div>
+    <div id="react-app">
+    </div>
+
 
     <!-- Styling -->
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- React dependencies -->
+    <script src='./../node_modules/react/dist/react.min.js'></script>
+    <script src='./../node_modules/react-dom/dist/react-dom.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script type="text/babel">
+      var hello = React.createClass({
+        render: function(){
+          return(
+            <div>
+              This is the only React Component on this page.
+            </div>
+          )
+        }
+      });
+
+      ReactDOM.render(
+        <hello />,
+        document.getElementById('react-app')
+      )
+    </script>
 
     <!-- Angular dependencies -->
     <script src='./../node_modules/angular/angular.min.js'></script>
