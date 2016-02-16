@@ -1,6 +1,6 @@
 var landingpage = angular.module('landingpage', []);
 
-landingpage.controller('landingpageController', ['$scope', 'User', 'Ballot', function($scope, User, Ballot){
+landingpage.controller('landingpageController', ['$scope', 'User', 'Ballot', 'socket', function($scope, User, Ballot, socket){
   var ctrl = this;
 
   ctrl.username = '';
@@ -30,6 +30,8 @@ landingpage.controller('landingpageController', ['$scope', 'User', 'Ballot', fun
 
   ctrl.fetchResults = function(code){
     User.setCode(code);
+    socket.emit('subscribe',{roomcode:code});
+
 
     Ballot.fetchResults(code);
   }
